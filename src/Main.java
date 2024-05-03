@@ -441,3 +441,138 @@
 // }
 //}
 //__________________________________________________________________________________________
+
+//14-exercise
+
+//public class Main {
+//public static void main(String[] args) {
+//  a1(5, 7);
+
+
+//a2(6,2);
+//a3(3,5);
+// }
+
+//public static void a1(int a, int b) {
+//  if (a > 2 && a < 11 || b >= 6 && b < 14) {
+//  System.out.println("Right");
+// }else{
+//System.out.println("False");
+// }
+// }
+// public static void a2(int a){
+// if (a > 2 && a < 11 || b >= 6 && b < 14) {
+////  System.out.println("Right");
+//// }else{
+////System.out.println("False");
+//// }
+//}
+// public static void a3(int a){
+// if (a > 2 && a < 11 || b >= 6 && b < 14) {
+////  System.out.println("Right");
+//// }else{
+////System.out.println("False");
+//// }
+// }
+//}
+//__________________________________________________________________________________________
+
+//15-exercise
+
+//public class Main {
+//public static void main(String[] args) {
+// String num = "1,2,3,4";
+// Decade("1");
+//  Decade("2");
+// Decade("3");
+//  Decade("4");
+//}
+// public static void Decade(String num){
+//   switch (num){
+//      case "1":
+// if (num == "1") {
+//     System.out.println("Winter");
+//     break;
+//  }
+//case "2":
+//   if (num == "2") {
+//      System.out.println("Spring");
+//   break;
+//   }
+//  case "3":
+//   if (num == "3") {
+//       System.out.println("Summer");
+//      break;
+//       }
+// case "4":
+//   if (num == "4") {
+//        System.out.println("Autumn");
+//        break;
+//    }
+// }
+// }
+//}
+//__________________________________________________________________________________________
+
+//16-exercise
+
+//public class Main {
+//public static void main(String[] args) {
+// Decade1(3);
+// Decade2(16);
+//  Decade3(30);
+//}
+// public static void Decade1(int num){
+//if (num >= 1 && num <= 10) {
+//   System.out.println("First");
+// }
+// }
+/// public static void Decade2(int num){
+//  if (num >= 11 && num <= 20) {
+//      System.out.println("Second");
+//  }
+//}
+
+// public static void Decade3(int num){
+// if (num >= 21 && num <= 31) {
+//    System.out.println("Third");
+// }
+//}
+
+//}
+//__________________________________________________________________________________________
+
+//17-exercise
+
+//public class Main {
+//public static void main(String[] args) {
+// Decade1(2);
+// Decade2(5);
+// Decade3(8);
+// Decade4(11);
+//}
+// public static void Decade1(int num){
+//if (num >= 1 && num <= 3) {
+//   System.out.println("Winter");
+// }
+// }
+/// public static void Decade2(int num){
+//  if (num >= 4 && num <= 6) {
+//      System.out.println("Spring");
+//  }
+//}
+
+// public static void Decade3(int num){
+// if (num >= 7 && num <= 9) {
+//    System.out.println("Summer");
+// }
+//}
+
+// public static void Decade4(int num){
+// if (num >= 10 && num <= 12) {
+//    System.out.println("Autumn");
+// }
+//}
+
+//}
+//_______________________________________________________________________________
