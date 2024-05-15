@@ -1,0 +1,51 @@
+import java.util.Scanner;
+
+public class L6 (3) {
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+
+        System.out.println("Введіть номер числа Фібоначчі:");
+        int userNum = scanner.nextInt();
+
+
+        task1(userNum);
+    }
+
+    public static void task1(int userNum) {
+
+        int fib1 = 0;
+        int fib2 = 1;
+
+
+        for (int i = 1; i <= userNum; i++) {
+            int nextFib = fib1 + fib2;
+            fib1 = fib2;
+            fib2 = nextFib;
+        }
+
+
+        while (!isPrime(fib2)) {
+            int nextFib = fib1 + fib2;
+            fib1 = fib2;
+            fib2 = nextFib;
+        }
+
+
+        System.out.println("Перше просте число в послідовності Фібоначчі, починаючи з номера " + userNum + ", є " + fib2);
+    }
+
+
+    public static boolean isPrime(int num) {
+        if (num <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
