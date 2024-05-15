@@ -1,0 +1,77 @@
+public class L5 {
+    public static void main(String[] args) {
+         min();
+         triangle();
+        int[] array = {5, 2, 4, 6, 1, 3};
+
+        insertionSort(array);
+
+
+        System.out.println("Sorted array:");
+        for (int num : array) {
+            System.out.print(num + " ");
+        }
+        int[] array2 = {5, 2, 4, 6, 1, 3};
+
+        bubbleSort(array2);
+
+        System.out.println("Sorted array:");
+        for (int num : array2) {
+            System.out.print(num + " ");
+        }
+    }
+
+    public static void bubbleSort(int[] array2) {
+        int n = array2.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (array2[j] > array2[j + 1]) {
+                    int temp = array2[j];
+                    array2[j] = array2[j + 1];
+                    array2[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    public static void insertionSort(int[] array) {
+        int n = array.length;
+        for (int i = 1; i < n; ++i) {
+            int key = array[i];
+            int j = i - 1;
+
+            while (j >= 0 && array[j] > key) {
+                array[j + 1] = array[j];
+                j = j - 1;
+            }
+            array[j + 1] = key;
+        }
+    }
+
+    //____________________________________________________________________________________________
+    public static void min() {
+        int size = 10;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (i == 0 || i == size - 1 || j == 0 || j == size - 1 || i == j || i + j == size - 1) {
+                    System.out.print(" * ");
+                } else {
+                    System.out.print("   ");
+                }
+            }
+            System.out.println();
+        }
+    }
+    public static void triangle(){
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (i == 9 || i == j && i>4 || j + i == 9 && i>4) {
+                    System.out.print(" * ");
+                } else {
+                    System.out.print("   ");
+                }
+            }
+            System.out.println();
+        }
+    }
+}
