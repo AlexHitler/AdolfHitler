@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+public class Main2 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введіть число:");
+        int num = scanner.nextInt();
+        System.out.println("Введіть очікувану суму цифр:");
+        int userNum = scanner.nextInt();
+        task1(num, userNum);
+    }
+
+    public static void task1(int num, int userNum) {
+        int sum = 0;
+        int originalNum = num;
+
+        while (num != 0) {
+            sum += num % 10;
+            num /= 10;
+        }
+        if (sum == userNum) {
+            System.out.println("Сума цифр числа " + originalNum + " дорівнює " + userNum);
+        } else {
+            System.out.println("Сума цифр числа " + originalNum + " не дорівнює " + userNum);
+        }
+    }
+}
+P.S--- Я ДОБАВИВ СКАННЕР З ЧАТУ ГПТ ЩОБ ПИСАТИ ЧИСЛА!!!
