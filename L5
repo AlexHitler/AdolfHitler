@@ -51,19 +51,6 @@ public class L5 {
 
     //____________________________________________________________________________________________
     public static void min() {
-        int size = 10;
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                if (i == 0 || i == size - 1 || j == 0 || j == size - 1 || i == j || i + j == size - 1) {
-                    System.out.print(" * ");
-                } else {
-                    System.out.print("   ");
-                }
-            }
-            System.out.println();
-        }
-    }
-    public static void triangle(){
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 if (i == 9 || i == j && i>4 || j + i == 9 && i>4) {
@@ -74,5 +61,48 @@ public class L5 {
             }
             System.out.println();
         }
+    }
+    public static void triangle(){
+        for (int p = 0; p < 10; p++) {
+            for (int k = 0; k < 10; k++) {
+                if (p == 0 || p == k && p<=4 || k + p == 9 && p<=4) {
+                    System.out.print(" * ");
+                } else {
+                    System.out.print("   ");
+                }
+            }
+            System.out.println();
+        }
+        for (int o = 0; o < 10; o++) {
+            for (int h = 0; h < 10; h++) {
+                if (h == 0 || o == h && o<=4 || h + o == 9 && o>4) {
+                    System.out.print(" * ");
+                } else {
+                    System.out.print("   ");
+                }
+            }
+            System.out.println();
+        }
+        for (int m = 0; m < 10; m++) {
+            for (int n = 0; n < 10; n++) {
+                if (n == 9 || m == n && m>4 || n + m == 9 && m<=4) {
+                    System.out.print(" * ");
+                } else {
+                    System.out.print("   ");
+                }
+            }
+            System.out.println();
+        }
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (i == 9 || i == j && i>4 || j + i == 9 && i>4) {
+                    System.out.print(" * ");
+                } else {
+                    System.out.print("   ");
+                }
+            }
+            System.out.println();
+        }
+
     }
 }
