@@ -18,6 +18,7 @@ public class L5 {
         System.out.println("Sorted array:");
         for (int num : array2) {
             System.out.print(num + " ");
+        min();
         }
     }
 
