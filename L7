@@ -1,0 +1,317 @@
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+public class Main {
+    //public static void main(String[] args) {
+    // int[][] array = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+
+    //  int sum = 0;
+
+    // for (int[] row : array) {
+    // for (int element : row) {
+    //     sum += element;
+    // }
+    // }
+    // System.out.println("Сума всіх елементів масиву: " + sum);
+    //}
+//}
+//________________________________________________________________________________
+    // public static void main(String[] args) {
+    // int[][] array = {
+    //         {1, 2, 3},
+    //          {4, 5, 6},
+    //         {7, 8, 9}
+    // };
+
+    //  int sum = 0;
+    // int count = 0;
+
+    //  for (int[] row : array) {
+    //     for (int element : row) {
+    //         sum += element;
+    //          count++;
+    //     }
+    //  }
+
+    //double average = (double) sum / count;
+
+    //  System.out.println("Середнє арифметичне значення всіх елементів масиву: " + average);
+    //}
+
+    //________________________________________________________________________________
+    //public static void main(String[] args) {
+      //  int[][] array = {
+              //  {1, 2, 3},
+              //  {4, 5, 6},
+             //   {7, 8, 9}
+       // };
+
+      //  for (int i = 0; i < array.length; i++) {
+          //  int maxInRow = array[i][0];
+
+           // for (int j = 1; j < array[i].length; j++) {
+            //    if (array[i][j] > maxInRow) {
+             //       maxInRow = array[i][j];
+             //   }
+           // }
+
+          //  System.out.println("Найбільший елемент у " + (i + 1) + "-му рядку: " + maxInRow);
+     //   }
+  //  }
+    //___________________________________________________________________________________________________
+          //public static void main(String[] args) {
+              //int[][] array = {
+                    //  {1, 2, 3},
+                   //   {4, 5, 6},
+                    //  {7, 8, 9}
+              //};
+
+             // for (int i = 0; i < array.length; i++) {
+                //  int minInRow = array[i][0];
+
+                 // for (int j = 2; j < array[i].length; j++) {
+                  //    if (array[j][i] < minInRow) {
+                  //        minInRow = array[j][i];
+                //      }
+               //   }
+
+               //   System.out.println("Найменший елемент у " + (i + 1) + "-му стовпці: " + minInRow);
+              //}
+              // }
+    //_________________________________________________________________________________________________________________
+              // public static void main(String[] args) {
+               //    int[][] array = {
+               //            {1, 2, 3},
+                //           {4, 5, 6},
+               //            {7, 8, 9}
+                 //  };
+
+                 //  for (int i = 0; i < array.length; i++) {
+                 //      int sumInRow = 0;
+
+                  //     for (int j = 0; j < array[i].length; j++) {
+                    //       sumInRow += array[i][j];
+                       //}
+
+                     //  System.out.println("Сума елементів у " + (i + 1) + "-му рядку: " + sumInRow);
+                  // }
+               //}
+    //______________________________________________________________________________________________________________
+            //         public static void main(String[] args) {
+                   //      int[][] array = {
+                     //            {1, -2, 3},
+                    //             {4, 5, -6},
+                    //             {7, 8, 9}
+                      //   };
+//
+                      //   boolean allPositive = true;
+
+                      //   for (int i = 0; i < array.length; i++) {
+                          //   if (array[i][i] <= 0) {
+                       //          allPositive = false;
+                      //           break;
+                         //    }
+                      //   }
+
+                     //    if (allPositive) {
+                       //      System.out.println("Усі елементи головної діагоналі масиву додатні.");
+                      //   } else {
+                      //       System.out.println("Не всі елементи головної діагоналі масиву додатні.");
+                       //  }
+                   //  }
+    //____________________________________________________________________________________________________________
+                   //  public static void main(String[] args) {
+                       //  int[][] array = {
+                        //         {1, 2, 3},
+                        //         {4, 5, 6},
+                        //         {7, 8, 9}
+                       //  };
+
+                       //  System.out.println("Початковий масив:");
+                         //printArray(array);
+
+                        // int[] temp = array[0];
+                        // array[0] = array[2];
+                        // array[2] = temp;
+
+                        // System.out.println("Масив після обміну рядків:");
+                      //   printArray(array);
+                    // }
+
+   // public static void printArray(int[][] array) {
+       // for (int[] row : array) {
+           // for (int element : row) {
+            //    System.out.print(element + " ");
+           // }
+           // System.out.println();
+       // }
+   // }
+    //_______________________________________________________________________________________________________
+  // public static void main(String[] args) {
+    //   int[][] array = {
+     //          {1, 2, 3},
+      //         {4, -5, 6},
+      //         {-7, 8, 9}
+     //  };
+
+       //int sum = 0;
+
+      // for (int i = 0; i < array.length; i++) {
+          // boolean hasNegative = false;
+
+          // for (int j = 0; j < array[i].length; j++) {
+          //     if (array[i][j] < 0) {
+           //        hasNegative = true;
+             //      break;
+           //    }
+           //}
+
+        //   if (hasNegative) {
+          //     for (int element : array[i]) {
+          //         sum += element;
+           //    }
+        //   }
+      // }
+
+      // System.out.println("Сума елементів у рядках, де є хоча б одне від'ємне число: " + sum);
+   //}
+    //_________________________________________________________________________________________________
+     // public static void main(String[] args) {
+        //  int[][] array = {
+       //           {1, 2, 3},
+         //         {4, 5, 6},
+       //           {7, 8, 9}
+        //  };
+
+         // int evenCount = 0;
+
+          //for (int[] row : array) {
+             // for (int element : row) {
+               //   if (element % 2 == 0) {
+               //       evenCount++;
+              //    }
+            //  }
+         // }
+
+       //   System.out.println("Кількість парних чисел у масиві: " + evenCount);
+     // }
+    //___________________________________________________________________________________________________
+      // public static void main(String[] args) {
+       //    int[][] array = {
+            //      {1, -2, 3},
+           //        {-4, 5, -6},
+             //     {7, 8, -9}
+          // };
+
+          // int negativeCount = 0;
+
+          // for (int[] row : array) {
+          //     for (int element : row) {
+          //         if (element < 0) {
+           //            negativeCount++;
+           //        }
+          //     }
+          // }
+
+          // System.out.println("Кількість від'ємних чисел у масиві: " + negativeCount);
+      // }
+    //________________________________________________________________________________________________________
+       // public static void main(String[] args) {
+          //  int[] arr = {0, 5, 0, 0, 8, 0, 0, 0};
+         //   System.out.println("Початковий масив: " + Arrays.toString(arr));
+         //   replaceZeros(arr);
+        //    System.out.println("Масив після заміни нулів: " + Arrays.toString(arr));
+      //  }
+
+       // public static void replaceZeros(int[] array) {
+          //  int count = 1;
+          //  for (int i = 0; i < array.length; i++) {
+              //  if (array[i] == 0) {
+              //      array[i] = count;
+             //       count++;
+             //   }
+          //  }
+        //}
+       //_____________________________________________________________________________________________________
+       //public static void main(String[] args) {
+          // int[][] matrix = {
+             //      {1, 2, 7},
+            //       {4, 5, 6},
+            //       {7, 8, 9}
+          // };
+          // boolean result = areDiagonalsEqual(matrix);
+          // System.out.println("Суми лівої та правої діагоналей однакові: " + result);
+      // }
+
+    //public static boolean areDiagonalsEqual(int[][] matrix) {
+        //int n = matrix.length;
+
+        //int leftDiagonalSum = 0;
+
+       // int rightDiagonalSum = 0;
+
+       // for (int i = 0; i < n; i++) {
+        //    leftDiagonalSum += matrix[i][i];
+        //}
+
+       // for (int i = 0; i < n; i++) {
+        //    rightDiagonalSum += matrix[i][n - i - 1];
+       // }
+      //  return leftDiagonalSum == rightDiagonalSum;
+    //}
+    //______________________________________________________________________________________________________
+       //public static void main(String[] args) {
+           //int[][] matrix = {
+             //      {1, 2, 3},
+            //       {4, 5, 6},
+            //       {7, 8, 9}
+          // };
+          // int leftDiagonalSum = sumOfLeftDiagonal(matrix);
+         //  System.out.println("Сума елементів на лівій діагоналі: " + leftDiagonalSum);
+       //}
+
+    // public static int sumOfLeftDiagonal(int[][] matrix) {
+       // int sum = 0;
+       // for (int i = 0; i < matrix.length; i++) {
+        //    sum += matrix[i][i];
+       // }
+      //  return sum;
+   //}
+    //_____________________________________________________________________________________________________
+   // public static void main(String[] args) {
+       // int[] array = {5, 3, 8, 2, 7, 1, 6, 4};
+       // int target = 9;
+      //  int count = countElementsLessThan(array, target);
+      //  System.out.println("Кількість елементів, які менше " + target + ": " + count);
+    //}
+
+   // public static int countElementsLessThan(int[] array, int target) {
+      //  int count = 0;
+      //  for (int i = 0; i < array.length; i++) {
+       //     if (array[i] < target) {
+        //        count++;
+       //     }
+        //}
+       // return count;
+   // }
+    //________________________________________________________________________________________________________
+  // public static void main(String[] args) {
+      // int[] array1 = {1, 2, 3, 4, 5};
+      // int[] array2 = {1, 2, 3, 2, 4, 5};
+
+      // System.out.println("Масив 1 містить унікальні елементи: " + areElementsUnique(array1));
+       //System.out.println("Масив 2 містить унікальні елементи: " + areElementsUnique(array2));
+  // }
+
+    //public static boolean areElementsUnique(int[] array) {
+     //   Set<Integer> set = new HashSet<>();
+      //  for (int num : array) {
+        //    if (!set.add(num)) {
+          //      return false;
+          //  }
+       // }
+       // return true;
+   // }
+    //______________________________________________________________________________________________________
+}
