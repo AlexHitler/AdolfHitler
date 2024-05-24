@@ -1,0 +1,119 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.Collections;
+
+public class Main {
+    //public static void main(String[] args) {
+     //  ArrayList<Integer> arrayList = new ArrayList<>();
+       // arrayList.add(10);
+       // arrayList.add(5);
+       // arrayList.add(8);
+       // arrayList.add(15);
+       // arrayList.add(3);
+       // arrayList.add(20);
+
+       // int max = findMax(arrayList);
+
+       // System.out.println("Найбільший елемент у ArrayList: " + max);
+   // }
+
+
+   // public static int findMax(ArrayList<Integer> arrayList) {
+   //     return Collections.max(arrayList);
+   // }
+    //___________________________________________________________________________________________________
+   //public static void main(String[] args) {
+     //  String str = "level";
+     //  boolean isPalindrome = checkPalindrome(str);
+
+     //  if (isPalindrome) {
+      //     System.out.println(str + " є паліндромом.");
+     //  } else {
+     //      System.out.println(str + " не є паліндромом.");
+     //  }
+   //}
+
+    //public static boolean checkPalindrome(String str) {
+     //   int length = str.length();
+
+       // for (int i = 0; i < length / 2; i++) {
+           // if (str.charAt(i) != str.charAt(length - 1 - i)) {
+           //     return false;
+          //  }
+       // }
+      //  return true;
+    //}
+    //___________________________________________________________________________________________________________________
+      // public static void main(String[] args) {
+          // List<Integer> inputList = new ArrayList<>();
+         //  inputList.add(1);
+          // inputList.add(2);
+           //inputList.add(3);
+          // inputList.add(2);
+         //  inputList.add(4);
+         //  inputList.add(3);
+          // inputList.add(5);
+
+        //   List<Integer> uniqueList = findUniqueElements(inputList);
+
+         //  System.out.println("Список з унікальними елементами: " + uniqueList);
+       //}
+
+    //public static List<Integer> findUniqueElements(List<Integer> inputList) {
+       // Set<Integer> uniqueSet = new HashSet<>(inputList);
+      //  return new ArrayList<>(uniqueSet);
+    //}
+    //______________________________________________________________________________________________
+
+    //public static void main(String[] args) {
+        //int[] array = {1, 2, 3, 4, 2, 3, 5, 6, 7, 8, 1, 4, 5, 5};
+
+      //  Map<Integer, Integer> frequencyMap = calculateFrequency(array);
+
+        //System.out.println("Частота появи кожного елемента:");
+       // for (Map.Entry<Integer, Integer> entry : frequencyMap.entrySet()) {
+        //    System.out.println(entry.getKey() + " : " + entry.getValue());
+        //}
+    //}
+
+    //public static Map<Integer, Integer> calculateFrequency(int[] array) {
+       // Map<Integer, Integer> frequencyMap = new HashMap<>();
+
+       // for (int num : array) {
+        //    frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+        //}
+
+       // return frequencyMap;
+   // }
+    //________________________________________________________________________________________________
+      // public static void main(String[] args) {
+        //   String text = "The quick brown fox jumps over the lazy dog. The dog barks loudly.";
+
+         //  Map<String, Integer> wordFrequency = calculateWordFrequency(text);
+
+          // System.out.println("Частота кожного слова в тексті:");
+          // for (Map.Entry<String, Integer> entry : wordFrequency.entrySet()) {
+          //     System.out.println(entry.getKey() + " : " + entry.getValue());
+          // }
+      // }
+
+   // public static Map<String, Integer> calculateWordFrequency(String text) {
+        //Map<String, Integer> wordFrequency = new HashMap<>();
+        
+       // String[] words = text.split("\\s+");
+        
+       // for (String word : words) {
+        //    word = word.replaceAll("[^a-zA-Z]", "").toLowerCase();
+            
+         //   if (!word.isEmpty()) {
+         //       wordFrequency.put(word, wordFrequency.getOrDefault(word, 0) + 1);
+          //  }
+       // }
+
+       // return wordFrequency;
+   //}
+}
