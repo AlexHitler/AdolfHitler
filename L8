@@ -1,0 +1,166 @@
+import java.util.ArrayList;
+
+public class Main{
+    public static void main(String[] args) {
+        Library library = new Library();
+
+        Book LTR = new Book("Nine Deaths", " J.K Rowling ", 2012);
+        Book TLR = new Book("Five Seas", " Jack London ", 1998);
+        Book RTL = new Book("The Donk", " Mark Stivenson ", 1869);
+
+        library.addBook(LTR);
+        library.addBook(TLR);
+        library.addBook(RTL);
+
+        library.print();
+        library.removeBook("The Donk");
+        library.print();
+    }
+
+
+static class Library {
+
+
+
+        Book book;
+
+        ArrayList<Book>books = new ArrayList<>();
+
+        public void addBook(String title, String author, int year){
+            Book book = new Book(title, author, year);
+
+            books.add(book);
+        }
+
+
+
+    public void addBook(Book book){
+            books.add(book);
+    }
+
+        public void removeBook(String title){
+           // books.remove();
+
+            for (int i = 0; i < books.size(); i++) {
+                if (title == books.get(i).title){
+                    books.remove(i);
+                }
+            }
+        }
+
+        public void print(){
+            String v = "Library: ";
+            for (int i = 0; i < books.size(); i++) {
+                System.out.println(v + books.get(i).title + books.get(i).author + books.get(i).year);
+            }
+            System.out.println("--------------------------------------");
+        }
+
+        public Book getBook(){
+            return book;
+        }
+
+    public int size() {
+            return books.size();
+    }
+}
+static class Book{
+
+        String title;
+
+        String author;
+
+        int year;
+
+        public Book(String title, String author, int id){
+            this.title = title;
+            this.author = author;
+            this.year = id;
+        }
+
+    }
+}
+//_________________________________________________________________________________________________________________________________________________________________
+
+public class Main2 {
+    public static void main(String[] args) {
+        Students students = new Students();
+
+        students.addStudent("Anna", 5, 14);
+        students.addStudent("Alex", 6, 12);
+        students.addStudent("Mark", 7, 11);
+
+        students.getStudents("Anna").addGrade(5,"Math");
+        students.getStudents("Anna").addGrade(4,"Physics");
+        students.getStudents("Anna").printGrades();
+    }
+
+
+    static class Students {
+
+        ArrayList<Student> students = new ArrayList<>();
+
+        public void addStudent(String name, int id, int year){
+            Student student = new Student(name, id, year);
+
+            students.add(student);
+        }
+
+
+        public Student getStudents(String name) {
+            for (int i = 0; i < students.size(); i++) {
+                if (students.get(i).student.equals(name)) {
+                    return students.get(i);
+                }
+            }
+            return null;
+        }
+
+        //public Main.Book getBook(){
+         //   return book;
+        //}
+
+      //  public int size() {
+         //   return books.size();
+       // }
+    }
+    static class Student{
+
+        String student;
+
+        ArrayList<Grade> grades = new ArrayList<Grade>();
+
+        int id;
+
+        int year;
+
+        public Student(String student, int id, int year){
+            this.student = student;
+            this.id = id;
+            this.year = year;
+        }
+
+        public void addGrade(int count, String object){
+            Grade grade = new Grade(count, object);
+
+            grades.add(grade);
+        }
+
+        public void printGrades() {
+            for (int i = 0; i < grades.size(); i++) {
+                System.out.println(student + ":" + grades.get(i).count + " " + grades.get(i).subject);
+            }
+        }
+    }
+}
+class Grade{
+
+   int count;
+
+   String subject;
+
+    public Grade(int count, String subject){
+        this.count = count;
+        this.subject = subject;
+    }
+}
