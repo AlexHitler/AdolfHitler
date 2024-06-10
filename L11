@@ -1,0 +1,295 @@
+import java.util.ArrayList;
+
+public class Main1 {
+    public static void main(String [] args){
+        Library library = new Library();
+
+        Book LTR = new Book("Nine Deaths", " J.K Rowling ", 2012);
+        Book TLR = new Book("Five Seas", " Jack London ", 1998);
+        Book RTL = new Book("The Donk", " Mark Stivenson ", 1869);
+        Book CVN = new Book("Python Cosmos", " Anika Harper ", 2009);
+        Book VNC = new Book("Java Programming", " Jack Lubinov ", 2006);
+        Book NCV = new Book("The Beaver", " Mike Hiroshima ", 1941);
+
+        library.addBook(LTR);
+        library.addBook(TLR);
+        library.addBook(RTL);
+        library.addBook(CVN);
+        library.addBook(VNC);
+        library.addBook(NCV);
+
+        library.removeBook("The Donk");
+        library.print();
+
+        int numOfBooks = Library.countBooks(library.books);
+        System.out.println("Кількість книг бібліотеці: " + numOfBooks);
+        System.out.println("--------------------------------------");
+
+        ArrayList<Book> booksByAuthor = library.searchByAuthor("Mike Hiroshima");
+        System.out.println("Книги, написані Mike Hiroshima: ");
+        for (Book book : booksByAuthor) {
+            System.out.println("Book: "+book.getTitle());
+        }
+        System.out.println("--------------------------------------");
+
+        ArrayList<Book> booksByTitle = library.searchByTitle("Java Programming");
+        System.out.println("Книги з назвою Java Programming: ");
+        for (Book book : booksByTitle) {
+            System.out.println("Author: "+book.getAuthor());
+        }
+        System.out.println("--------------------------------------");
+    }
+
+
+    static class Library {
+
+        ArrayList<Book> books;
+
+        public Library(){
+            this.books = new ArrayList<>();
+        }
+        public void addBook(Book book){
+            books.add(book);
+        }
+
+        public void removeBook(String title){
+            // books.remove();
+
+            for (int i = 0; i < books.size(); i++) {
+                if (title == books.get(i).title){
+                    books.remove(i);
+                }
+            }
+        }
+
+        public void print(){
+            String v = "Library: ";
+            for (int i = 0; i < books.size(); i++) {
+                System.out.println(v + books.get(i).title + books.get(i).author + books.get(i).year);
+            }
+            System.out.println("--------------------------------------");
+        }
+
+        public static int countBooks(ArrayList<Book> books) {
+            return books.size();
+        }
+
+        public ArrayList<Book> searchByAuthor(String author) {
+            ArrayList<Book> result = new ArrayList<>();
+            for (Book book : books) {
+                if (book.getAuthor().contains(author)) {
+                    result.add(book);
+                }
+            }
+            return result;
+        }
+
+        public ArrayList<Book> searchByTitle(String title) {
+            ArrayList<Book> result = new ArrayList<>();
+            for (Book book : books) {
+                if (book.getTitle().contains(title)) {
+                    result.add(book);
+                }
+            }
+            return result;
+        }
+    }
+    static class Book{
+
+        String title;
+
+        String author;
+
+        int year;
+
+        public Book(String title, String author, int id){
+            this.title = title;
+            this.author = author;
+            this.year = id;
+        }
+        public String getTitle() {
+            return title;
+        }
+
+        public String getAuthor() {
+            return author;
+        }
+    }
+}
+//_____________________________________________________________________________________________________________________________________________________________________
+import java.util.ArrayList;
+
+public class Main{
+    public static void main(String[] args) {
+        Bank bank = new Bank();
+
+        Raxynok account1 = new Raxynok("51566789", 1234);
+        Raxynok account2 = new Raxynok("39482764", 2567);
+
+        bank.addRaxynok(account1);
+        bank.addRaxynok(account2);
+
+        account1.transfer(account2,500);
+
+        account1.checkBalance();
+        account2.checkBalance();
+
+        account1.setIs_froze(true);
+
+        bank.checkBalance("51566789");
+        bank.checkBalance("39482764");
+    }
+    static class Raxynok {
+
+        private String accountNumber;
+        private double balance;
+
+        public boolean getIs_froze() {
+            return is_froze;
+        }
+
+        public void setIs_froze(boolean is_froze) {
+            this.is_froze = is_froze;
+        }
+
+        private boolean is_froze = false;
+
+        public Raxynok(String accountNumber, double initialBalance) {
+            this.accountNumber = accountNumber;
+            this.balance = initialBalance;
+        }
+
+        public void deposit(double amount) {
+            if (amount > 0) {
+                balance += amount;
+                System.out.println(amount + " грошей успішно додано на рахунок " + accountNumber);
+            } else {
+                System.out.println("Неправильна сума для додавання на рахунок.");
+            }
+        }
+
+        public void withdraw(double amount) {
+            if (amount > 0 && amount <= balance) {
+                balance -= amount;
+                System.out.println(amount + " грошей успішно знято з рахунку " + accountNumber);
+            } else {
+                System.out.println("Недостатньо коштів на рахунку для зняття або неправильна сума.");
+            }
+        }
+
+        public void transfer(Raxynok destinationAccount, double amount) {
+            if (amount > 0 && amount <= balance) {
+                withdraw(amount);
+                destinationAccount.deposit(amount);
+                System.out.println(amount + " грошей успішно переведено на рахунок " + destinationAccount.getAccountNumber());
+            } else {
+                System.out.println("Недостатньо коштів для переведення або неправильна сума.");
+            }
+        }
+
+        public void checkBalance() {
+            System.out.println("Залишок на рахунку " + accountNumber + ": " + balance);
+        }
+
+        public String getAccountNumber() {
+            return accountNumber;
+        }
+    }
+    static class Bank {
+
+        ArrayList<Raxynok> raxynki = new ArrayList<>();
+
+            public void addRaxynok(Raxynok raxynok){
+                raxynki.add(raxynok);
+            }
+            public void checkBalance(String accountNumber) {
+                for (int i = 0; i < raxynki.size(); i++) {
+                    if(raxynki.get(i).accountNumber.equals(accountNumber)){
+                        if (!raxynki.get(i).is_froze) {
+                            raxynki.get(i).checkBalance();
+                        }else{
+                            System.out.println(accountNumber + " Is frozen.");
+                        }
+                    }
+                }
+            }
+
+    }
+}
+//_______________________________________________________________________________________________________________________________________________________________________________________________________
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main3 {
+
+    public static void main(String[] args) {
+        HRSystem hrSystem = new HRSystem();
+
+
+        hrSystem.addEmployee(new Employee("John Doe", 5000, "IT"));
+        hrSystem.addEmployee(new Employee("Jane Smith", 6000, "Sales"));
+        hrSystem.addEmployee(new Employee("Alice Johnson", 5500, "HR"));
+
+        double averageSalary = HRSystem.calculateAverageSalary(hrSystem);
+        System.out.println("Середня зарплата працівників компанії: $" + averageSalary);
+    }
+
+    static class Employee {
+        private String name;
+        private double salary;
+        private String department;
+
+        public Employee(String name, double salary, String department) {
+            this.name = name;
+            this.salary = salary;
+            this.department = department;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public double getSalary() {
+            return salary;
+        }
+
+        public String getDepartment() {
+            return department;
+        }
+    }
+
+    static class HRSystem {
+        private List<Employee> employees;
+
+        public HRSystem() {
+            this.employees = new ArrayList<>();
+        }
+
+        public void addEmployee(Employee employee) {
+            employees.add(employee);
+        }
+
+        public void removeEmployee(Employee employee) {
+            employees.remove(employee);
+        }
+
+        public double calculateTotalSalary() {
+            double totalSalary = 0;
+            for (Employee employee : employees) {
+                totalSalary += employee.getSalary();
+            }
+            return totalSalary;
+        }
+
+        public static double calculateAverageSalary(HRSystem hrSystem) {
+            List<Employee> employees = hrSystem.employees;
+            double totalSalary = hrSystem.calculateTotalSalary();
+            if (employees.size() > 0) {
+                return totalSalary / employees.size();
+            } else {
+                return 0;
+            }
+        }
+    }
+}
+//__________________________________________________________________________________________________________________________
