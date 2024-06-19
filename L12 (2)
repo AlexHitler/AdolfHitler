@@ -1,0 +1,136 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        PetStore store = new PetStore();
+
+        Dog dog = new Dog("Buddy", 3, "Golden Retriever");
+        Cat cat = new Cat("Whiskers", 2, "White");
+
+        store.addAnimal(dog);
+        store.addAnimal(cat);
+
+        store.listAnimals();
+
+        System.out.println("\nCustomizing info for Buddy the dog...");
+        store.customizeAnimalInfo("Buddy", "Friendly and loves playing fetch.");
+
+        System.out.println("\nUpdated list of animals:");
+        store.listAnimals();
+
+        System.out.println("\nRemoving Whiskers the cat...");
+        store.removeAnimal("Whiskers");
+
+        System.out.println("\nFinal list of animals:");
+        store.listAnimals();
+    }
+
+static class PetStore {
+    private List<Animal> animals;
+
+    public PetStore() {
+        this.animals = new ArrayList<>();
+    }
+
+    public void addAnimal(Animal animal) {
+        animals.add(animal);
+    }
+
+    public void removeAnimal(String name) {
+        Iterator<Animal> iterator = animals.iterator();
+        while (iterator.hasNext()) {
+            Animal animal = iterator.next();
+            if (animal.name.equals(name)) {
+                iterator.remove();
+                System.out.println("Animal named '" + name + "' removed from the store.");
+                return;
+            }
+        }
+        System.out.println("Animal named '" + name + "' not found in the store.");
+    }
+
+    public void listAnimals() {
+        System.out.println("List of animals in the store:");
+        for (Animal animal : animals) {
+            System.out.println(animal.getInfo());
+            System.out.println("---------------------");
+        }
+    }
+
+    public void customizeAnimalInfo(String name, String customInfo) {
+        for (Animal animal : animals) {
+            if (animal.name.equals(name)) {
+                animal.customizeInfo(customInfo);
+                System.out.println("Custom info updated for animal '" + name + "'.");
+                return;
+            }
+        }
+        System.out.println("Animal named '" + name + "' not found in the store.");
+    }
+}
+
+abstract class Animal {
+    protected String name;
+    protected int age;
+
+    public Animal(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public abstract String getInfo();
+
+    public void customizeInfo(String customInfo) {
+    }
+}
+
+class Dog extends Animal {
+    private String breed;
+    private String customInfo;
+
+    public Dog(String name, int age, String breed) {
+        super(name, age);
+        this.breed = breed;
+    }
+
+    @Override
+    public String getInfo() {
+        if (customInfo != null && !customInfo.isEmpty()) {
+            return "Dog: Name - " + name + ", Age - " + age + ", Breed - " + breed + "\nCustom Info: " + customInfo;
+        } else {
+            return "Dog: Name - " + name + ", Age - " + age + ", Breed - " + breed;
+        }
+    }
+
+    @Override
+    public void customizeInfo(String customInfo) {
+        this.customInfo = customInfo;
+    }
+}
+
+class Cat extends Animal {
+    private String color;
+    private String customInfo;
+
+    public Cat(String name, int age, String color) {
+        super(name, age);
+        this.color = color;
+    }
+
+    @Override
+    public String getInfo() {
+        if (customInfo != null && !customInfo.isEmpty()) {
+            return "Cat: Name - " + name + ", Age - " + age + ", Color - " + color + "\nCustom Info: " + customInfo;
+        } else {
+            return "Cat: Name - " + name + ", Age - " + age + ", Color - " + color;
+        }
+    }
+
+    @Override
+    public void customizeInfo(String customInfo) {
+        this.customInfo = customInfo;
+    }
+}
+}
