@@ -1,0 +1,95 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class Main{
+    public static void main(String[] args) {
+        Company company = new Company();
+
+        Manager manager = new Manager("John Doe", 1, 5000, "Sales");
+        Engineer engineer = new Engineer("Jane Smith", 2, 6000, "Software Development");
+
+        company.addEmployee(manager);
+        company.addEmployee(engineer);
+
+        company.listEmployees();
+
+        company.removeEmployee(1);
+
+        company.listEmployees();
+
+    }
+
+    static class Company {
+        private List<Employee> employees;
+
+        public Company() {
+            this.employees = new ArrayList<>();
+        }
+
+        public void addEmployee(Employee employee) {
+            employees.add(employee);
+        }
+
+        public void removeEmployee(int id) {
+            Iterator<Employee> iterator = employees.iterator();
+            while (iterator.hasNext()) {
+                Employee employee = iterator.next();
+                if (employee.id == id) {
+                    iterator.remove();
+                    System.out.println("Employee with ID " + id + " removed.");
+                    return;
+                }
+            }
+            System.out.println("Employee with ID " + id + " not found.");
+        }
+
+        public void listEmployees() {
+            System.out.println("List of employees:");
+            for (Employee employee : employees) {
+                System.out.println(employee.getDetails());
+            }
+        }
+    }
+abstract class Employee {
+    protected String name;
+    protected int id;
+    protected double salary;
+
+    public Employee(String name, int id, double salary) {
+        this.name = name;
+        this.id = id;
+        this.salary = salary;
+    }
+
+    public abstract String getDetails();
+}
+
+class Manager extends Employee {
+    private String department;
+
+    public Manager(String name, int id, double salary, String department) {
+        super(name, id, salary);
+        this.department = department;
+    }
+
+    @Override
+    public String getDetails() {
+        return "Name: " + name + ", ID: " + id + ", Salary: " + salary + ", Department: " + department;
+    }
+}
+
+class Engineer extends Employee {
+    private String specialty;
+
+    public Engineer(String name, int id, double salary, String specialty) {
+        super(name, id, salary);
+        this.specialty = specialty;
+    }
+
+    @Override
+    public String getDetails() {
+        return "Name: " + name + ", ID: " + id + ", Salary: " + salary + ", Specialty: " + specialty;
+    }
+}
+}
