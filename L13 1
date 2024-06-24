@@ -1,0 +1,138 @@
+public class Main{
+    public static void main(String[] args) {
+        Circle circle = new Circle(10);
+
+        circle.S();
+
+        Triangle triangle = new Triangle(5,4,6);
+
+        triangle.S();
+
+        Pryamokytnik pryamokytnik = new Pryamokytnik(10,3);
+
+        pryamokytnik.S();
+    }
+}
+
+abstract class Geometric {
+
+    abstract void S();
+}
+
+public class Pryamokytnik extends Geometric{
+
+    public Pryamokytnik(double a, double b){
+        this.a = a;
+        this.b = b;
+    }
+
+    private double a;
+    private double b;
+
+    @Override
+    void S() {
+        System.out.println("The S of Pryamokytnik: " +a*b+ " cm");
+    }
+}
+
+public class Triangle extends Geometric{
+
+    public Triangle(double a, double b, double c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+
+    private double a;
+    private double b;
+    private double c;
+
+    @Override
+    void S() {
+        System.out.println("The S of Triangle: " +a*b*c + " cm");
+    }
+}
+
+public class Circle extends Geometric{
+
+    public Circle(double d) {
+        this.d = d;
+    }
+
+    private double d;
+
+    void S() {
+        System.out.println("The S of Circle: " +d*3.14 + " cm");
+    }
+}
+//___________________________________________________________________________________________________________________________________
+public class Main{
+    public static void main(String[] args) {
+
+        Dog dog = new Dog("Meat","Gav Gav");
+
+        dog.Dog();
+
+        Cat cat = new Cat("Fish","Meow");
+
+        cat.Dog();
+
+        Bird bird = new Bird("Worms","Kar Kar");
+
+        bird.Dog();
+    }
+}
+
+abstract class Animal2 {
+
+    abstract void Dog();
+}
+
+public class Cat extends Animal2{
+
+    public Cat(String food, String sound){
+        this.food = food;
+        this.sound = sound;
+    }
+
+    private String sound;
+    private String food;
+
+    @Override
+    void Dog(){
+        System.out.println("The cat do: " + sound + " ,and eat: " + food);
+    }
+}
+
+public class Dog extends Animal2{
+
+    public Dog(String food, String sound){
+        this.food = food;
+        this.sound = sound;
+    }
+
+    private String sound;
+    private String food;
+
+    @Override
+    void Dog(){
+        System.out.println("The dog do: " + sound + " ,and eat: " + food);
+    }
+}
+
+public class Bird extends Animal2{
+
+    public Bird(String food, String sound){
+        this.food = food;
+        this.sound = sound;
+    }
+
+    private String sound;
+    private String food;
+
+    @Override
+    void Dog(){
+        System.out.println("The bird do: " + sound + " ,and eat: " + food);
+    }
+}
+//____________________________________________________________
