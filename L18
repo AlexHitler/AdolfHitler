@@ -1,0 +1,43 @@
+public class Main {
+    public static void main(String[] args) {
+        Flowers myFlower = new Flowers();
+        House myHouse = new House();
+
+
+        myFlower.notWateringFlowers();
+        myHouse.notCleanHouse();
+
+        try {
+            myFlower.wateringFlowers();
+        } catch (Exception e) {
+            System.out.println("You haven`t water the plants, Mom is angry!!");
+        }
+
+        try {
+            myHouse.cleanHouse();
+        } catch (Exception e) {
+            System.out.println("You haven`t clean the house, Mom is angry!!");
+        }
+    }
+    static class Flowers{
+
+        public void notWateringFlowers(){
+            System.out.println("Mom: You must water the plants!!");
+        }
+
+        public void wateringFlowers() throws Exception {
+            throw new Exception();
+        }
+    }
+
+    static class House{
+
+        public void notCleanHouse(){
+            System.out.println("Mom: You must clean the house, before i get Home!!");
+        }
+
+        public void cleanHouse() throws Exception {
+            throw new Exception();
+        }
+    }
+}
