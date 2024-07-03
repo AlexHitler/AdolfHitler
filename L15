@@ -1,0 +1,114 @@
+import java.awt.Color;
+
+
+import javax.swing.JButton;
+import javax.swing.*;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
+
+
+public class Main {
+    public static void main(String[] args) {
+        Calc calc = new Calc();
+
+}
+class Calc extends JFrame {
+
+
+    int y = 50;
+
+    boolean red = false;
+
+    boolean lastik = false;
+
+    int x = 0;
+
+
+    Color color = Color.BLACK;
+
+    static Calc(){
+
+        setLayout(null);
+        setSize(700, 600);
+        setBackground(Color.WHITE);
+
+        JButton button = new JButton("LASTIK");
+        button.setBounds(100,100,100,50);
+        add(button);
+        JButton button2 = new JButton("OVAL");
+        button2.setBounds(300,300,100,50);
+        add(button2);
+
+
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (lastik){
+                    lastik = false;
+                }else{
+                    lastik = true;
+                }
+            }
+        });
+
+        button2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent a) {
+                if (red){
+                    red = false;
+                }else{
+                    red = true;
+                }
+            }
+        });
+        addMouseMotionListener(new MouseMotionListener() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                Graphics g = getGraphics();
+                g.setColor(Color.BLACK);
+                if(lastik){
+                    g.setColor(Color.WHITE);
+                    g.fillRect(e.getX(), e.getY(),50,50);
+                    return;
+                }
+
+                Graphics s = getGraphics();
+                s.setColor(Color.BLACK);
+                if(red){
+                    g.setColor(Color.BLACK);
+                    g.fillOval(e.getX(), e.getY(),50,50);
+                    return;
+                }
+
+                if(x==0 && y==0){
+                    x = e.getX();
+                    y = e.getY();
+                    return;
+                }
+
+                g.drawLine(x,y, e.getX(), e.getY());
+                x = e.getX();
+                y = e.getY();
+
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                x = 0;
+                y = 0;
+            }
+
+
+        });
+
+        setVisible(true);
+    }
+}
+
+}
