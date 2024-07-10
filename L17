@@ -1,0 +1,86 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+public class Main {
+    public static void main(String[] args) {
+        Calc calc = new Calc();
+    }
+
+static class Calc extends JFrame implements ActionListener, MouseListener {
+    private int y = 50;
+
+    private JTextField t = new JTextField();
+
+    private JLabel p = new JLabel("Different:");
+
+    private JLabel s = new JLabel("Important:");
+
+    public Calc() {
+        setLayout(null);
+        setSize(700, 600);
+        ui();
+        setVisible(true);
+        setBackground(Color.PINK);
+    }
+
+    private void ui() {
+        JButton b = new JButton("add");
+        b.setBounds(100, 50, 100, 100);
+        add(b);
+        t.setBounds(200, 50, 100, 100);
+        add(t);
+        p.setBounds(300, 0, 100, 50);
+        add(p);
+        s.setBounds(500, 0, 100, 50);
+        add(s);
+
+
+        b.addActionListener(this);
+
+    }
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JLabel l = new JLabel();
+        String text = t.getText();
+
+        l.setText(text);
+        l.setBounds(330, y, 100, 100);
+        l.addMouseListener(this);
+
+        y += 50;
+        add(l);
+        repaint();
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+}
+}
