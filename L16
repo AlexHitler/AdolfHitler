@@ -1,0 +1,111 @@
+import javax.print.DocFlavor;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+public class Main {
+    public static void main(String[] args) {
+        Calc calc = new Calc();
+    }
+}
+
+static class Calc extends JFrame implements ActionListener, MouseListener {
+
+
+    private int y = 50;
+
+    private int x = 50;
+
+    private JTextField t = new JTextField();
+
+    private JLabel p = new JLabel("Different:");
+
+    private JLabel s = new JLabel("Important:");
+
+    public Calc(){
+        setLayout(null);
+        setSize(700,600);
+        ui();
+        setVisible(true);
+        setBackground(Color.PINK);
+    }
+
+    private void ui(){
+        JButton b = new JButton("add");
+        b.setBounds(100,50,100,100);
+        add(b);
+        t.setBounds(200,50,100,100);
+        add(t);
+        p.setBounds(300,0,100,50);
+        add(p);
+        s.setBounds(500,0,100,50);
+        add(s);
+
+
+        b.addActionListener(this);
+
+    }
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JLabel l = new JLabel();
+        String text = t.getText();
+        l.setText(text);
+        l.addMouseListener(this);
+
+        boolean Zaglavnaya = Zaglavnaya(text);
+
+        if (Zaglavnaya) {
+            l.setForeground(Color.RED);
+            l.setBounds(530, x, 100, 100);
+            x += 50;
+        }else{
+            l.setBounds(330, y, 100, 100);
+            y+=50;
+        }
+        add(l);
+        repaint();
+    }
+
+    private boolean Zaglavnaya(String text) {
+        for (char c : text.toCharArray()) {
+            if (Character.isUpperCase(c)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        JLabel l = (JLabel) e.getSource();
+        l.setForeground(Color.RED);
+        repaint();
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        JLabel l = (JLabel) e.getSource();
+        l.setForeground(Color.BLACK);
+        repaint();
+    }
+}
