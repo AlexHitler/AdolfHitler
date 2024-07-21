@@ -1,0 +1,82 @@
+import javax.swing.*;
+import java.awt.*;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+//import static javax.swing.SwingConstants.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Timer r = new Timer();
+    }
+static class Timer extends JFrame implements ActionListener, MouseListener {
+
+    Font font = new Font("Arial", Font.PLAIN, 23);
+    Font font2 = new Font("Arial", Font.PLAIN, 33);
+
+    public Timer() {
+        setLayout(null);
+        setSize(700, 600);
+        ui();
+        setVisible(true);
+        setBackground(Color.PINK);
+    }
+
+    private void ui() {
+        JLabel n = new JLabel("Timer");
+        n.setFont(font2);
+        n.setBounds(285,0,200,100);
+        add(n);
+
+        JTextField t = new JTextField();
+        t.setFont(font);
+        t.setHorizontalAlignment(SwingConstants.CENTER);
+        t.setBounds(210,150,100,100);
+        add(t);
+        JLabel p = new JLabel(":");
+        p.setFont(font);
+        p.setBounds(315,150,20,100);
+        add(p);
+        JTextField w = new JTextField();
+        w.setFont(font);
+        w.setHorizontalAlignment(SwingConstants.CENTER);
+        w.setBounds(330,150,100,100);
+        add(w);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+}
+
+}
