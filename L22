@@ -1,0 +1,130 @@
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import javax.swing.ImageIcon;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+
+public class Main {
+    public static void main(String[] args) {
+        UI ui = new UI();
+    }
+
+static class UI extends JFrame implements KeyListener {
+    private Hero  hero = new Hero();
+    public UI() {
+        setLayout(null);
+
+
+        hero.setBounds(0, 0, hero.getWidth(), hero.getHeight());
+        add(hero);
+
+        addKeyListener(this);
+        setSize(800, 700);
+        setVisible(true);
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_UP:
+//                hero.move(hero.getX() + 10, hero.getY());
+                hero.jump();
+                break;
+            case KeyEvent.VK_LEFT:
+                hero.move(hero.getX() - 10, hero.getY());
+                break;
+            case KeyEvent.VK_RIGHT:
+                hero.move(hero.getX() + 10, hero.getY());
+                break;
+            case KeyEvent.VK_DOWN:
+                hero.move(hero.getX(), hero.getY() + 10);
+                break;
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
+
+static class Hero extends JLabel {
+    int w = 150;
+    int h = 195;
+    int currentX = 0;
+    int currentY = -77;
+    private Image originalImage = null;
+    public Hero() {
+
+        try {
+            originalImage = ImageIO.read(new File("src/anim.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        setSize(w, h);
+        new BaseAnim().start();
+    }
+
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(originalImage, currentX, currentY, this);
+    }
+
+    public void move(int x, int y) {
+        setBounds(x, y, w, h);
+    }
+
+    public void jump() {
+        new Jump().start();
+    }
+
+    class Jump extends Thread{
+        int [] yJump = {2, 12, 15, -1, -3, -7, -15, -3,-1};
+        int [] xJump = {3, 3, 2, 2, 1, 2, 3, 4, 5};
+        @Override
+        public void run() {
+            for (int i = 0; i < 8; i++) {
+                setBounds(getX()+xJump[i], getY()-yJump[i], w, h);
+                try {
+                    sleep(1000/25);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+    }
+    class BaseAnim  extends Thread{
+        int count = 0;
+        @Override
+        public void run() {
+            while (true) {
+                for (int i = 0; i < 2; i++) {
+                    currentY -= h;
+                    for (int j = 0; j < 5; j++) {
+                        currentX -= w;
+                        try {
+                            repaint();
+                            sleep(1000 / 8);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                    currentY = -77;
+                    currentX = 0;
+                }
+
+            }
+        }
+    }
+}
+}
+}
