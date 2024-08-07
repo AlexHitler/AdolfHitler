@@ -1,0 +1,79 @@
+package org.example;
+
+import java.util.Scanner;
+
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+public class Main {
+    public static void main(String[] args){
+        NumberM  manager = new NumberM();
+        Scanner scanner = new Scanner(System.in);
+
+        while(true){
+            System.out.println("Type number, or exit for finish: ");
+            String scan = scanner.nextLine();
+
+            if(scan.equalsIgnoreCase("exit")){
+                System.out.println("You`ve finished the programme.");
+                break;
+            }
+
+            try {
+                int num = Integer.parseInt(scan);
+                manager.addNumber(num);
+            }catch(NumberFormatException e){
+                System.out.println("It`s not right, try again.");
+            }
+        }
+
+
+        manager.printResults();
+    }
+}
+//________________________________________________________________________________________________
+
+static class NumberM {
+
+    private List<Integer> nums = new ArrayList<>();
+
+    public void addNumber(int num) {
+        nums.add(num);
+    }
+
+    public void printResults() {
+        int sumOfDouble = StreamAPI.sumDoubleNums(nums);
+        System.out.println("Sum of all double numbers: " + sumOfDouble);
+
+        int everyNum = StreamAPI.everyOddNums(nums);
+        System.out.println("Every odd nums: " + everyNum);
+
+        int maxValue = StreamAPI.maxValue(nums);
+        System.out.println("Max value of nums: " + maxValue);
+
+        int[] evenNums = StreamAPI.evenNums(nums);
+        System.out.println("Even nums: " + evenNums);
+
+        int averageNum = StreamAPI.averageNum(nums);
+        System.out.println("Average num: " + averageNum);
+    }
+}
+//__________________________________________________________________________________________________
+
+static class StreamAPI {
+
+    public static int sumDoubleNums(List<Integer> nums){
+        return nums.stream().filter(num -> num % 2 == 0).mapToInt(Integer::intValue).sum();
+    }
+    public static int everyOddNums(List<Integer> nums){
+        return nums.stream().mapToInt(Integer::intValue).reduce(1, (x, y) -> x * y);
+    }
+    public static int maxValue(List<Integer> nums){
+        return nums.stream().max(Integer::compareTo).orElse(0);
+    }
+    public static int[] evenNums(List<Integer> nums){
+        return nums.stream().filter(num -> num % 2 != 0).mapToInt(Integer::intValue).toArray();
+    }
+    public static int averageNum(List<Integer> nums){
+        return (int) nums.stream().mapToInt(Integer::intValue).average().orElse(0);
+    }
+}
