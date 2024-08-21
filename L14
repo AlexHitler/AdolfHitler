@@ -1,0 +1,302 @@
+import s1.Calc;
+
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+public class Main {
+    public static void main(String[] args) {
+        Calc calc = new Calc();
+    }
+
+package s1;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Calc extends JFrame implements ActionListener, MouseListener {
+
+    private String sign = "";
+    private String text1 = "";
+
+    public Calc(){
+         setLayout(null);
+         setSize(300, 400);
+         setBackground(Color.BLACK);
+
+         JTextField TxtField = new JTextField();
+         TxtField.setEditable(false);
+         TxtField.setSize(300, 30);
+         TxtField.setLocation(0, 10);
+         add(TxtField);
+
+         JButton a = new JButton("1");
+         a.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TxtField.setText(TxtField.getText() + "1");
+            }
+        });
+
+        JButton jButtonClear = new JButton("Del");
+        jButtonClear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TxtField.setText("");
+                text1 = "";
+                sign = "";
+            }
+        });
+
+         JButton b = new JButton("2");
+         b.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TxtField.setText(TxtField.getText() + "2");
+            }
+        });
+
+         JButton c = new JButton("3");
+         c.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TxtField.setText(TxtField.getText() + "3");
+            }
+        });
+
+         JButton d = new JButton("4");
+         d.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TxtField.setText(TxtField.getText() + "4");
+            }
+        });
+
+         JButton M = new JButton("5");
+         M.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TxtField.setText(TxtField.getText() + "5");
+            }
+        });
+
+         JButton f = new JButton("6");
+         f.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TxtField.setText(TxtField.getText() + "6");
+            }
+        });
+
+         JButton g = new JButton("7");
+         g.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TxtField.setText(TxtField.getText() + "7");
+            }
+        });
+
+         JButton h = new JButton("8");
+         h.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TxtField.setText(TxtField.getText() + "8");
+            }
+        });
+
+         JButton i = new JButton("9");
+         i.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TxtField.setText(TxtField.getText() + "9");
+            }
+        });
+
+         JButton j = new JButton("*");
+         j.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                text1 = TxtField.getText();
+                sign = "*";
+                TxtField.setText("");
+            }
+        });
+
+         JButton k = new JButton("0");
+         k.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TxtField.setText(TxtField.getText() + "0");
+            }
+        });
+
+
+         JButton m = new JButton("-");
+         m.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                text1 = TxtField.getText();
+                sign = "-";
+                TxtField.setText("");
+            }
+        });
+
+         JButton n = new JButton("+");
+         n.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                text1 = TxtField.getText();
+                sign = "+";
+                TxtField.setText("");
+            }
+        });
+
+         JButton o = new JButton("/");
+         o.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                text1 = TxtField.getText();
+                sign = "/";
+                TxtField.setText("");
+            }
+        });
+
+        JButton l = new JButton("=");
+        l.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                switch (sign) {
+                    case "+":
+                        TxtField.setText(String.valueOf(Integer.parseInt(text1) + Integer.parseInt(TxtField.getText())));
+                        break;
+                    case "-":
+                        TxtField.setText(String.valueOf(Integer.parseInt(text1) - Integer.parseInt(TxtField.getText())));
+                        break;
+                    case "*":
+                        TxtField.setText(String.valueOf(Integer.parseInt(text1) * Integer.parseInt(TxtField.getText())));
+                        break;
+                    case "/":
+                        TxtField.setText(String.valueOf(Integer.parseInt(text1) / Integer.parseInt(TxtField.getText())));
+                        break;
+                    default:
+                        System.out.println("Error! Enter correct please!");
+                        break;
+                }
+            }
+        });
+        setVisible(true);
+
+
+        a.setLocation(0, 70);
+        a.setBackground(new Color(Color.ORANGE.getRGB()));
+        a.setSize(70, 70);
+        add(a);
+
+        b.setLocation(70, 70);
+        b.setBackground(new Color(Color.ORANGE.getRGB()));
+        b.setSize(70, 70);
+        add(b);
+
+        c.setLocation(140, 70);
+        c.setBackground(new Color(Color.ORANGE.getRGB()));
+        c.setSize(70, 70);
+        add(c);
+
+        d.setLocation(210, 70);
+        d.setBackground(new Color(Color.ORANGE.getRGB()));
+        d.setSize(70, 70);
+        add(d);
+
+        M.setLocation(0, 140);
+        M.setBackground(new Color(Color.ORANGE.getRGB()));
+        M.setSize(70, 70);
+        add(M);
+
+        f.setLocation(70, 140);
+        f.setBackground(new Color(Color.ORANGE.getRGB()));
+        f.setSize(70, 70);
+        add(f);
+
+        g.setLocation(140, 140);
+        g.setBackground(new Color(Color.ORANGE.getRGB()));
+        g.setSize(70, 70);
+        add(g);
+
+        h.setLocation(210, 140);
+        h.setBackground(new Color(Color.ORANGE.getRGB()));
+        h.setSize(70, 70);
+        add(h);
+
+        i.setLocation(0, 210);
+        i.setBackground(new Color(Color.ORANGE.getRGB()));
+        i.setSize(70, 70);
+        add(i);
+
+        k.setLocation(70, 210);
+        k.setBackground(new Color(Color.ORANGE.getRGB()));
+        k.setSize(70, 70);
+        add(k);
+
+        j.setLocation(140, 210);
+        j.setBackground(new Color(Color.ORANGE.getRGB()));
+        j.setSize(70, 70);
+        add(j);
+
+        jButtonClear.setBackground(new Color(Color.ORANGE.getRGB()));
+        jButtonClear.setSize(70, 70);
+        jButtonClear.setLocation(210, 210);
+        add(jButtonClear);
+
+        m.setLocation(0, 280);
+        m.setBackground(new Color(Color.GRAY.getRGB()));
+        m.setSize(70, 70);
+        add(m);
+
+        n.setLocation(70, 280);
+        n.setBackground(new Color(Color.ORANGE.getRGB()));
+        n.setSize(70, 70);
+        add(n);
+
+        o.setLocation(140, 280);
+        o.setBackground(new Color(Color.ORANGE.getRGB()));
+        o.setSize(70, 70);
+        add(o);
+
+        l.setLocation(210, 280);
+        l.setBackground(new Color(Color.GRAY.getRGB()));
+        l.setSize(70, 70);
+        add(l);
+    }
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+}
+
+}
