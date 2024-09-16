@@ -1,0 +1,219 @@
+package org.example;
+
+import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
+
+import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.meta.generics.LongPollingBot;
+import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.security.cert.CertPathBuilder;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import static jdk.javadoc.internal.tool.Main.execute;
+
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+public class Main {
+    public static void main(String[] args) throws TelegramApiException {
+        TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
+        botsApi.registerBot(new Bot());
+    }
+}
+
+public class Bot extends TelegramLongPollingBot {
+
+    public static void main(String[] args) {
+
+        try {
+            TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
+            botsApi.registerBot((LongPollingBot) new Main());
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public String getBotUsername() {
+
+        return "SnakeTgBot"; // замініть на ім'я вашого бота
+    }
+
+    public String getBotToken(){
+        try {
+            return getToken("passwordBot.txt");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String getToken(String filePath) throws IOException {
+        BufferedReader reader = null;
+        try{
+
+            reader = new BufferedReader(new FileReader(filePath));
+            return reader.readLine();
+
+        }finally{
+
+            if(reader != null){
+                reader.close();
+            }
+        }
+
+    }
+
+    @Override
+    public void onUpdateReceived(Update update) {
+        long idUser = update.getMessage().getFrom().getId();
+        String textUser = update.getMessage().getText();
+
+        InlineKeyboardButton next = InlineKeyboardButton.builder()
+                .text("Next")
+                .build();
+
+        if(textUser.equals("next")) {
+            sendText(idUser, onUpdateReceived2(idUser, update));
+            return;
+        }
+        if(textUser.equals("fortnite")) {
+            sendText(idUser, "https://www.fortnite.com/?lang=ru");
+        }
+        if(textUser.equals("minecraft")) {
+            sendText(idUser, "https://www.minecraft.net/ru-ru");
+        }
+        if(textUser.equals("ark")) {
+            sendText(idUser, "https://www.ark-world.ru/");
+        }
+
+
+        InlineKeyboardButton back = InlineKeyboardButton.builder()
+                .text("Back").callbackData("back")
+                .build();
+
+        InlineKeyboardButton url = InlineKeyboardButton.builder()
+                .text("Tutorial").callbackData("tutorial")
+                .url("https://botcreators.ru/blog/botfather-instrukciya/")
+                .build();
+
+
+        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
+        List<InlineKeyboardButton> keyboardRows = new ArrayList<>();
+
+        keyboardRows.add(next);
+        keyboardRows.add(back);
+        keyboardRows.add(url);
+
+        inlineKeyboardMarkup.setKeyboard(Collections.singletonList(keyboardRows));
+        sendMenu(idUser, "Menu", inlineKeyboardMarkup);
+    }
+
+    private void sendMenu(Long who, String txt, InlineKeyboardMarkup kb){
+        SendMessage sm = SendMessage
+                .builder()
+                .chatId(who.toString())
+                .parseMode("HTML").text(txt)
+                .replyMarkup(kb).build();
+
+        try{
+            execute(sm);
+        }catch (TelegramApiException e){
+            throw new RuntimeException();
+        }
+    }
+
+    public String onUpdateReceived2(Long idUser, Update update) {
+        idUser = update.getMessage().getFrom().getId();
+        String textUser = update.getMessage().getText();
+
+        InlineKeyboardButton Fortnite = InlineKeyboardButton.builder()
+                .text("Fortnite").callbackData("fortnite")
+                .url("https://www.fortnite.com/?lang=ru")
+                .build();
+
+        InlineKeyboardButton Minecraft = InlineKeyboardButton.builder()
+                .text("Minecraft").callbackData("minecraft")
+                .url("https://www.minecraft.net/ru-ru")
+                .build();
+
+        InlineKeyboardButton ARK = InlineKeyboardButton.builder()
+                .text("ARK").callbackData("ark")
+                .url("https://www.ark-world.ru/")
+                .build();
+
+        InlineKeyboardMarkup inlineKeyboardMarkup2 = new InlineKeyboardMarkup();
+        List<InlineKeyboardButton> keyboardRows2 = new ArrayList<>();
+
+        keyboardRows2.add(Fortnite);
+        keyboardRows2.add(Minecraft);
+        keyboardRows2.add(ARK);
+
+        inlineKeyboardMarkup2.setKeyboard(Collections.singletonList(keyboardRows2));
+        sendMenu2(idUser, "What game do you like?", inlineKeyboardMarkup2);
+        return textUser;
+    }
+
+    public void sendMenu2(Long who, String txt, InlineKeyboardMarkup kb){
+        SendMessage sm = SendMessage
+                .builder()
+                .chatId(who.toString())
+                .parseMode("HTML").text(txt)
+                .replyMarkup(kb).build();
+
+        try{
+            execute(sm);
+        }catch (TelegramApiException e){
+            throw new RuntimeException();
+        }
+    }
+
+    public void sendText(Long who, String what){
+        SendMessage sm = SendMessage.builder()
+                .chatId(who.toString())
+                .text(what)
+                .parseMode("Markdown")
+                .build();
+
+        try{
+            execute(sm);
+        }catch (TelegramApiException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void sendText2(Long who, String what){
+        SendMessage sm = SendMessage.builder()
+                .chatId(who.toString())
+                .text(what)
+                .parseMode("Markdown")
+                .build();
+
+        try{
+            execute(sm);
+        }catch (TelegramApiException e){
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
+
+    private CertPathBuilder parseMode(String markdown) {
+        return null;
+    }
+
+}
