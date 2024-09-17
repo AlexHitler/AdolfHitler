@@ -1,0 +1,97 @@
+package org.example;
+
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) {
+//        new Game();
+          new Controller(new ModelNew(), new View());
+//        new Controller(new Model());
+    }
+
+
+
+}
+
+public class Controller implements ActionListener {
+    IModel model;
+    IView view;
+
+    public Controller(IModel model,IView view) {
+        this.model  = model;
+        this.view  = view;
+        view.setController(this);
+        view.setText("hi");
+    }
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String s = model.click();
+        view.setText(s);
+    }
+}
+
+public class Controller implements ActionListener {
+    IModel model;
+    IView view;
+
+    public Controller(IModel model,IView view) {
+        this.model  = model;
+        this.view  = view;
+        view.setController(this);
+        view.setText("hi");
+    }
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String s = model.click();
+        view.setText(s);
+    }
+}
+
+public interface IView {
+    void setText(String text);
+    void setController(Controller controller);
+}
+
+public class View extends JFrame implements IView{
+    Controller controller;
+    JButton button  = new JButton("Click me");
+    public View() throws HeadlessException {
+
+        setTitle("Game");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(800, 600);
+
+        button.setBounds(100,100,100,50);
+
+        add(button);
+        setLocationRelativeTo(null);
+        setVisible(true);
+        setResizable(false);
+    }
+    public void setController(Controller controller) {
+        this.controller = controller;
+        button.addActionListener(controller);
+    }
+
+    public void setText(String text) {
+        button.setText(text);
+    }
+    //model
+//view
+//controller
+
+}
+
+public interface IModel {
+    String click();
+}
