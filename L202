@@ -1,0 +1,113 @@
+package org.example;
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+
+    public static void main(String []args){
+
+            University university = new University("Одеський Медичний Інститут");
+
+            Main.University.Faculty csFaculty = university.new Faculty("Факультет Хирургії");
+
+            Main.University.Faculty.Department csDepartment = csFaculty.new Department("Кафедра хирургіческих наук");
+
+            csDepartment.addCourse("Хірургічний досвід");
+            csDepartment.addCourse("Алгоритми та структури людини");
+
+            csFaculty.addDepartment(csDepartment);
+
+            Main.University.Faculty mathFaculty = university.new Faculty("Факультет лікарів");
+
+            Main.University.Faculty.Department mathDepartment = mathFaculty.new Department("Кафедра лікарняно-оздоровча");
+
+            mathDepartment.addCourse("Лікарняний досвід 1");
+            mathDepartment.addCourse("Лікарняний досвід 2");
+
+            mathFaculty.addDepartment(mathDepartment);
+
+            university.addFaculty(csFaculty);
+            university.addFaculty(mathFaculty);
+
+            university.displayInfo();
+    }
+
+    static class University {
+
+        private String name;
+        private List<Faculty> faculties;
+
+        public University(String name) {
+            this.name = name;
+            this.faculties = new ArrayList<>();
+        }
+
+
+        public void addFaculty(Faculty faculty) {
+            faculties.add(faculty);
+        }
+
+
+        public void displayInfo() {
+            System.out.println("Університет: " + name);
+            for (Faculty faculty : faculties) {
+                faculty.displayInfo();
+            }
+        }
+
+
+        class Faculty {
+
+
+            private String name;
+            private List<Department> departments;
+
+            public Faculty(String name) {
+                this.name = name;
+                this.departments = new ArrayList<>();
+            }
+
+
+            public void addDepartment(Department department) {
+                departments.add(department);
+            }
+
+
+            public void displayInfo() {
+                System.out.println("  Факультет: " + name);
+                for (Department department : departments) {
+                    department.displayInfo();
+                }
+            }
+
+
+            class Department {
+                private String name;
+                private List<String> courses;
+
+                public Department(String name) {
+                    this.name = name;
+                    this.courses = new ArrayList<>();
+                }
+
+
+                public void addCourse(String course) {
+                    courses.add(course);
+                }
+
+
+                public void displayInfo() {
+                    System.out.println("    Кафедра: " + name);
+                    System.out.println("      Курси:");
+                    for (String course : courses) {
+                        System.out.println("        - " + course);
+                    }
+                }
+            }
+        }
+
+
+    }
+}
